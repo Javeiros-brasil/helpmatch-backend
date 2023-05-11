@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  postgres:
+    image: 'postgres:9.6-alpine'
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    container_name: "help-match-backend"
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: helpmatch_db
+
+  pgadmin4:
+    image: 'dpage/pgadmin4:5.5'
+    container_name: "pgadmin4-library"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@helpmatch.com.br
+      PGADMIN_DEFAULT_PASSWORD: 123
+    ports:
+      - 8082:80
+
+volumes:
+  postgres-volume:
