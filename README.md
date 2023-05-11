@@ -7,3 +7,7 @@ HelpMatch é um aplicativo que conecta pessoas que precisam de serviços com pes
 <h3>
 Como contribuir?
 </h3>
+
+<h3>
+Funcionalidades:
+</h3>
