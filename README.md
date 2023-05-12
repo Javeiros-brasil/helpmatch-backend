@@ -5,7 +5,7 @@ HelpMatch é um aplicativo que conecta pessoas que precisam de serviços com pes
 </p>
 
 <h3>
-Como contribuir?
+Como contribuir? 🦾🧠
 </h3>
 
 <ol>
@@ -14,3 +14,36 @@ Como contribuir?
 <li>Adicione o repositório principal como um repositório remoto: <b>git remote add upstream https://github.com/Javeiros-brasil/helpmatch-backend.git</b></li>
 <li>Na raíz do projeto, inicie a imagem docker para criar o Bando de Dados: <b>docker-compose up</b></li>
 </ol>
+
+<h3>
+Tecnologias Utilizadas 💻
+</h3>
+
+<ol>
+<li>Java 11</li>
+<li>Springboot</li>
+<li>JPA/Hibernate</li>
+<li>Postgres</li>
+<li>Docker</li>
+<li>REST</li>
+<li>SonarLint</li>
+<li>Junit</li>
+<li>Mockito</li>
+<li>Lombok</li>
+<li>Maven</li>
+<li>Git/Github</li>
+</ol>
+
+<h3>
+Ferramentas e Tecnologias para Gestão 🛠
+</h3>
+
+<ol>
+<li>Discord</li>
+<li>Trello</li>
+<li>Scrum</li>
+<li>Kanban</li>
+</ol>
+
+Created By Javeiros. ☕
+
