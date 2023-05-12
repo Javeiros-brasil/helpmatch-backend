@@ -10,7 +10,6 @@ Como contribuir?
 
 <ol>
 <li>Faça um Fork do Repositório: <a href="https://www.youtube.com/watch?v=osE-7OXqFCI&ab_channel=RinaldoDev" target="_blank">Vídeo Tutorial</a></li>
-  ![image](https://github.com/Javeiros-brasil/helpmatch-backend/assets/4906986/24f7a892-11a5-4442-b67d-578449919ab7)
 <li>Clone o projeto para o seu repositório local: <b>git clone link</b>.</li>
 <li>Adicione o repositório principal como um repositório remoto: <b>git remote add upstream https://github.com/Javeiros-brasil/helpmatch-backend.git</b></li>
 <li>Na raíz do projeto, inicie a imagem docker para criar o Bando de Dados: <b>docker-compose up</b></li>
