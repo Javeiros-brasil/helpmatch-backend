@@ -1,18 +1,30 @@
 package br.com.helpmatch.helpmatchbackend.service.email;
 
+import br.com.helpmatch.helpmatchbackend.entity.Code;
+import br.com.helpmatch.helpmatchbackend.repository.CodeRepository;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
 @Service
-public class EmailConfirmationService implements IEmailConfirmationService{
+public class EmailConfirmationService implements IEmailConfirmationService {
+
+    private final CodeRepository codeRepository;
+
+    public EmailConfirmationService(CodeRepository codeRepository) {
+        this.codeRepository = codeRepository;
+    }
+
     @Override
     public void sendEmail(String recipient) {
-        int code = codeGenerator().getCode();
+        Code code = codeGenerator();
+        code.setEmail(recipient);
 
         String emailSender = "helpmatchapp@gmail.com";
         String emailSenderPassword = "dtuilyswyudssver";
@@ -21,7 +33,7 @@ public class EmailConfirmationService implements IEmailConfirmationService{
 
         String body = "Olá, tudo bem?" +
                 "\nFalta pouco para validarmos seu cadastro!" +
-                "\n\nCódigo de verificação de endereço de e-mail: "+ code +  "."+
+                "\n\nCódigo de verificação de endereço de e-mail: " + code.getCodeVerification() + "." +
                 "\n\nEste é o código de verificação solicitado para verificar seu endereço de e-mail." +
                 "\nSe você precisar de ajuda adicional, entre em contato com " + emailSender + ".\n" +
                 "\nAtenciosamente," +
@@ -41,11 +53,13 @@ public class EmailConfirmationService implements IEmailConfirmationService{
             email.addTo(recipient);
 
             email.send();
+            codeRepository.save(code);
         } catch (EmailException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
-    private static Code codeGenerator (){
+
+    private static Code codeGenerator() {
         Long expiration = 300000L;
         Random random = new Random();
 
@@ -54,7 +68,14 @@ public class EmailConfirmationService implements IEmailConfirmationService{
     }
 
     @Override
-    public void confirmCode() {
-        //TODO:
+    public boolean confirmCode(String email, int code) {
+
+        Date date = new Date();
+        Code codeObj = codeRepository.findByEmailAndCodeVerification(email, code);
+
+        if (!codeObj.getExpiration().after(date)) {
+            return false;
+        }
+        return true;
     }
 }
