@@ -1,13 +1,12 @@
 package br.com.helpmatch.helpmatchbackend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 @Data
-public class User {
+@Entity
+public class UserModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -16,6 +15,4 @@ public class User {
     private String email;
 
     private boolean access;
-
-
 }

@@ -1,7 +1,9 @@
 package br.com.helpmatch.helpmatchbackend.service.email;
 
+import br.com.helpmatch.helpmatchbackend.entity.Code;
+
 public interface IEmailConfirmationService {
     void sendEmail(String recipient);
 
-    void confirmCode();
+    boolean confirmCode(String email, int code);
 }
