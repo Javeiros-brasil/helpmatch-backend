@@ -70,10 +70,10 @@ public class EmailConfirmationService implements IEmailConfirmationService {
     @Override
     public boolean confirmCode(String email, int code) {
 
-        Date date = new Date();
+        Date date = new Date(System.currentTimeMillis());
         Code codeObj = codeRepository.findByEmailAndCodeVerification(email, code);
 
-        if (!codeObj.getExpiration().after(date)) {
+        if (codeObj.getExpiration().before(date)) {
             return false;
         }
         return true;

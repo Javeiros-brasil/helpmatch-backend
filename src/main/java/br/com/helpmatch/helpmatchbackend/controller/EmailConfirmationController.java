@@ -4,26 +4,22 @@ import br.com.helpmatch.helpmatchbackend.dto.CodeDto;
 import br.com.helpmatch.helpmatchbackend.entity.Code;
 import br.com.helpmatch.helpmatchbackend.service.email.IEmailConfirmationService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "email-confirmation/")
+@RequestMapping("email-confirmation/")
 public class EmailConfirmationController {
     @Autowired
     public IEmailConfirmationService _emailConfirmationService;
 
     @PostMapping("/send")
-    public void sendCode(@RequestBody @Valid CodeDto recipient){
-
-        _emailConfirmationService.sendEmail(recipient.getEmail());
+    public void sendCode(@RequestParam @Valid @Email String email){
+        _emailConfirmationService.sendEmail(email);
     }
     @PostMapping("/confirm")
     public boolean confirmCode(@RequestBody @Valid CodeDto recipient){
-
         return _emailConfirmationService.confirmCode(recipient.getEmail(), recipient.getCodeVerification());
     }
 }
