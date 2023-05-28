@@ -2,13 +2,8 @@ package br.com.helpmatch.helpmatchbackend.service.email;
 
 import br.com.helpmatch.helpmatchbackend.entity.Code;
 import br.com.helpmatch.helpmatchbackend.repository.CodeRepository;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -16,9 +11,11 @@ import java.util.Random;
 public class EmailConfirmationService implements IEmailConfirmationService {
 
     private final CodeRepository codeRepository;
+    private final SendEmailService sendEmailService;
 
-    public EmailConfirmationService(CodeRepository codeRepository) {
+    public EmailConfirmationService(CodeRepository codeRepository, SendEmailService sendEmailService) {
         this.codeRepository = codeRepository;
+        this.sendEmailService = sendEmailService;
     }
 
     @Override
@@ -27,10 +24,8 @@ public class EmailConfirmationService implements IEmailConfirmationService {
         code.setEmail(recipient);
 
         String emailSender = "helpmatchapp@gmail.com";
-        String emailSenderPassword = "dtuilyswyudssver";
 
         String subject = "Código de Verificação";
-
         String body = "Olá, tudo bem?" +
                 "\nFalta pouco para validarmos seu cadastro!" +
                 "\n\nCódigo de verificação de endereço de e-mail: " + code.getCodeVerification() + "." +
@@ -39,23 +34,8 @@ public class EmailConfirmationService implements IEmailConfirmationService {
                 "\nAtenciosamente," +
                 "\nEquipe Help Macth";
 
-
-        try {
-            Email email = new SimpleEmail();
-            email.setHostName("smtp.gmail.com"); // Servidor SMTP do Gmail
-            email.setSmtpPort(587); // Porta SMTP do Gmail
-            email.setAuthentication(emailSender, emailSenderPassword);
-            email.setStartTLSEnabled(true); // Habilita STARTTLS
-            email.setSSLOnConnect(true);
-            email.setFrom(emailSender);
-            email.setSubject(subject);
-            email.setMsg(body);
-            email.addTo(recipient);
-
-            email.send();
+        if (sendEmailService.sendEmail(recipient, body, subject)){
             codeRepository.save(code);
-        } catch (EmailException e) {
-            throw new RuntimeException(e.getMessage());
         }
     }
 
