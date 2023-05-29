@@ -15,17 +15,12 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 public class Code {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private int codeVerification;
-
     private Date expiration;
-
     private String email;
-
     public Code(int codeVerification, Date expiration) {
         this.codeVerification = codeVerification;
         this.expiration = expiration;

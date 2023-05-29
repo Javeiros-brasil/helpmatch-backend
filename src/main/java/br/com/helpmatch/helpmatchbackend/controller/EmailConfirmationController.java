@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class EmailConfirmationController {
     @Autowired
     public IEmailConfirmationService _emailConfirmationService;
-
     @PostMapping("/send")
     public void sendCode(@RequestParam @Valid @Email String email){
         _emailConfirmationService.sendEmail(email);

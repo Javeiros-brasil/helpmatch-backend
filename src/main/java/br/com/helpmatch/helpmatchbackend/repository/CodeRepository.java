@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CodeRepository extends JpaRepository<Code, Long> {
-
     Code findByEmailAndCodeVerification(String email, int code);
 }

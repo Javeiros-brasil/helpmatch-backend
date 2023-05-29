@@ -2,6 +2,7 @@ package br.com.helpmatch.helpmatchbackend.service.email;
 
 import br.com.helpmatch.helpmatchbackend.entity.Code;
 import br.com.helpmatch.helpmatchbackend.repository.CodeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -9,15 +10,10 @@ import java.util.Random;
 
 @Service
 public class EmailConfirmationService implements IEmailConfirmationService {
-
-    private final CodeRepository codeRepository;
-    private final SendEmailService sendEmailService;
-
-    public EmailConfirmationService(CodeRepository codeRepository, SendEmailService sendEmailService) {
-        this.codeRepository = codeRepository;
-        this.sendEmailService = sendEmailService;
-    }
-
+    @Autowired
+    private CodeRepository codeRepository;
+    @Autowired
+    private ISendEmailService _sendEmailService;
     @Override
     public void sendEmail(String recipient) {
         Code code = codeGenerator();
@@ -34,11 +30,10 @@ public class EmailConfirmationService implements IEmailConfirmationService {
                 "\nAtenciosamente," +
                 "\nEquipe Help Macth";
 
-        if (sendEmailService.sendEmail(recipient, body, subject)){
+        if (_sendEmailService.sendEmail(recipient, body, subject)){
             codeRepository.save(code);
         }
     }
-
     private static Code codeGenerator() {
         Long expiration = 300000L;
         Random random = new Random();
@@ -46,10 +41,8 @@ public class EmailConfirmationService implements IEmailConfirmationService {
         return new Code(random.nextInt((999999 - 000000) + 1) + 000000,
                 new Date(System.currentTimeMillis() + expiration));
     }
-
     @Override
     public boolean confirmCode(String email, int code) {
-
         Date date = new Date(System.currentTimeMillis());
         Code codeObj = codeRepository.findByEmailAndCodeVerification(email, code);
 
