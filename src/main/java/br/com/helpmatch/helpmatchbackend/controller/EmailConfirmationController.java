@@ -6,10 +6,12 @@ import br.com.helpmatch.helpmatchbackend.service.email.IEmailConfirmationService
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("email-confirmation/")
+@Validated
 public class EmailConfirmationController {
     @Autowired
     public IEmailConfirmationService _emailConfirmationService;
