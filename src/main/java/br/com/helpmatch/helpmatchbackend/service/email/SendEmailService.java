@@ -25,6 +25,7 @@ public class SendEmailService implements ISendEmailService {
             email.setSubject(subject);
             email.setMsg(body);
             email.addTo(recipient);
+            email.setCharset("UTF-8");
             email.send();
 
             return true;

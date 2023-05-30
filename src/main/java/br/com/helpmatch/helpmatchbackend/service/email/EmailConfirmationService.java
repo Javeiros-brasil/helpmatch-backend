@@ -17,8 +17,6 @@ public class EmailConfirmationService implements IEmailConfirmationService {
     private ISendEmailService _sendEmailService;
     @Value("${email.sender}")
     private String EMAIL_SENDER;
-    @Value("${email.body}")
-    private String BODY;
     @Value("${email.subject}")
     private String SUBJECT;
     private static final Long EXPIRATION = 300000L;
