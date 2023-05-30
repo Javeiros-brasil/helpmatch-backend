@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("email-confirmation/")
+@RequestMapping("/email-confirmation")
 @Validated
 public class EmailConfirmationController {
     @Autowired
