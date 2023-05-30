@@ -1,7 +1,11 @@
 package br.com.helpmatch.helpmatchbackend.controller;
 
+import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
 import br.com.helpmatch.helpmatchbackend.repository.ProfissionalRepository;
 import br.com.helpmatch.helpmatchbackend.service.ProfissionalService;
+
+import java.util.List;
+
 import org.apache.coyote.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/profissional")
+@RestController
+@RequestMapping("/profissional")
 public class ProfissionalController {
 
     @Autowired
@@ -22,12 +27,14 @@ public class ProfissionalController {
 
     @GetMapping
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok().body(null);
+    	List<?> listProfissional = service.getAll();
+        return ResponseEntity.ok().body(listProfissional);
     }
 
     @PostMapping
-    public ResponseEntity<?> create(){
-        return ResponseEntity.created(null).body(null);
+    public ResponseEntity<?> create(@RequestBody ProfissionalDto profissional){
+    	ProfissionalDto profissionalResponse = service.create(profissional);
+        return ResponseEntity.created(null).body(profissionalResponse);
     }
 
     @PutMapping(path = "/{id}")
