@@ -3,6 +3,7 @@ package br.com.helpmatch.helpmatchbackend.service;
 import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProfissionalService {
     /**
@@ -10,7 +11,7 @@ public interface ProfissionalService {
      * @param id - Identificador do profissional
      * @return ProfissionalDTO - profissional correspondente ao Id
      */
-    public ProfissionalDto getById(Long id);
+    public Optional<ProfissionalDto> getById(Long id);
 
     /**
      * Metodo para pegar todos os profissional
@@ -31,7 +32,7 @@ public interface ProfissionalService {
      * @param profissional - Profissional com os novos dados
      * @return ProfissionalDto - Profissional com os dados atualizados
      */
-    public ProfissionalDto update(Long id, ProfissionalDto profissional);
+    public Optional<ProfissionalDto> update(Long id, ProfissionalDto profissional);
 
     /**
      * Metodo para remover um profissional

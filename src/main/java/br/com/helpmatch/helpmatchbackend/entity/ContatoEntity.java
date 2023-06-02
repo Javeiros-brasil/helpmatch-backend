@@ -1,10 +1,9 @@
-package br.com.helpmatch.helpmatchbackend.dto;
-
+package br.com.helpmatch.helpmatchbackend.entity;
 
 import lombok.Data;
 
 @Data
-public class ContatoDto {
+public class ContatoEntity {
     private Long id;
     private String celular;
     private String email;

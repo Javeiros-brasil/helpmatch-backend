@@ -13,26 +13,27 @@ import java.util.Optional;
 public class ProfissionalRepository implements CrudRepository<ProfissionalEntity, Long> {
 
     public Map<Long,ProfissionalEntity> db = new HashMap<>();
+    public int index = 0;
 
     @Override
     public ProfissionalEntity save(ProfissionalEntity entity) {
 
-        entity.setId(db.size()+1l);
-        db.put(entity.getId(),entity);
+        if(entity.getId() == null){
+            entity.setId(index+1l);
+            index++;
+        }
 
+        db.put(entity.getId(),entity);
         return entity;
     }
-
-
-
     @Override
-    public Optional<ProfissionalEntity> findById(Long aLong) {
-        return Optional.of( db.get( aLong.intValue() ) );
+    public Optional<ProfissionalEntity> findById(Long id) {
+        return Optional.ofNullable( db.get( id ) );
     }
 
     @Override
-    public boolean existsById(Long aLong) {
-        return db.get( aLong.intValue() ) != null;
+    public boolean existsById(Long id) {
+        return db.get( id ) != null;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ProfissionalRepository implements CrudRepository<ProfissionalEntity
     public Iterable<ProfissionalEntity> findAllById(Iterable<Long> longs) {
         ArrayList<ProfissionalEntity> listProfissionais = new ArrayList<>();
         for(Long id : longs){
-            ProfissionalEntity profissional = db.get(id.intValue());
+            ProfissionalEntity profissional = db.get(id);
             if(profissional != null){
                 listProfissionais.add(profissional);
             }
@@ -58,8 +59,8 @@ public class ProfissionalRepository implements CrudRepository<ProfissionalEntity
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        db.remove(aLong);
+    public void deleteById(Long id) {
+        db.remove(id);
     }
 
     @Override
