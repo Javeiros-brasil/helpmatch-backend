@@ -1,4 +1,4 @@
-package br.com.helpmatch.helpmatchbackend;
+package src.main.java.br.com.helpmatch.helpmatchbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
