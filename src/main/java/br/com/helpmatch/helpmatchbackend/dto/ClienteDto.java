@@ -24,4 +24,7 @@ public class ClienteDto {
     private AcessoDto acesso;
 
 
+    public ClienteDto() {
+
+    }
 }
