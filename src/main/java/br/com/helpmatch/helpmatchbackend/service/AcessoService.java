@@ -1,5 +1,6 @@
 package br.com.helpmatch.helpmatchbackend.service;
 
+import br.com.helpmatch.helpmatchbackend.dto.AcessoDTO;
 import br.com.helpmatch.helpmatchbackend.entities.Acesso;
 import br.com.helpmatch.helpmatchbackend.repository.AcessoRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -20,19 +21,20 @@ public class AcessoService {
 
     /*como aqui está sendo testado apenas superficial para validar o acesso do cliente
     esta sendo buscado na base pelo nome do usuário apenas.*/
-    public Acesso getAcessValidation(String username, String password) throws RuntimeException {
-        validateValues(username, password);
-        Optional<Acesso> optionalAcessoUsername = acessoRepository.findByUsername(username);
+    public Acesso getAcessValidation(AcessoDTO acessoDTO) throws RuntimeException {
+        validateValues(acessoDTO);
+        Optional<Acesso> optionalAcessoUsername = acessoRepository.findByUsername(acessoDTO.getUsername());
         if (optionalAcessoUsername.isPresent()) {
             Acesso acesso = optionalAcessoUsername.get();
             validatePermitionAcessAccount(acesso);
-            if (!acesso.getPassword().equals(password)) {
+            if (!acesso.getPassword().equals(acessoDTO.getPassword())) {
                 LOGGER.info("A senha digitada está errada");
                 throw new RuntimeException("A senha digitada está errada");
             } else {
                 return acesso;
             }
         }
+
         return null;
     }
 
@@ -51,16 +53,16 @@ public class AcessoService {
         }
     }
 
-    private void validateValues(String username, String password) throws RuntimeException {
-        if (StringUtils.isBlank(username)) {
+    private void validateValues(AcessoDTO acessoDTO) throws RuntimeException {
+        if (StringUtils.isBlank(acessoDTO.getUsername())) {
             LOGGER.info("Username não está preenchido");
             throw new RuntimeException("Username não está preenchido");
         }
-        if (StringUtils.isBlank(password)) {
+        if (StringUtils.isBlank(acessoDTO.getPassword())) {
             LOGGER.info("Password não está preenchido");
             throw new RuntimeException("Password não está preenchido");
         }
-        if (StringUtils.isBlank(username) && StringUtils.isBlank(password)) {
+        if (StringUtils.isBlank(acessoDTO.getUsername()) && StringUtils.isBlank(acessoDTO.getPassword())) {
             LOGGER.info("Usuario e Password não estão preenchidos");
             throw new RuntimeException("Usuario e Password não está preenchido");
         }
