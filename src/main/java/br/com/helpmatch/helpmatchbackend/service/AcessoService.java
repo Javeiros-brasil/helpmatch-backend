@@ -54,6 +54,10 @@ public class AcessoService {
     }
 
     private void validateValues(AcessoDTO acessoDTO) throws RuntimeException {
+        if (StringUtils.isBlank(acessoDTO.getUsername()) && StringUtils.isBlank(acessoDTO.getPassword())) {
+            LOGGER.info("Usuario e Password não estão preenchidos");
+            throw new RuntimeException("Usuario e Password não está preenchido");
+        }
         if (StringUtils.isBlank(acessoDTO.getUsername())) {
             LOGGER.info("Username não está preenchido");
             throw new RuntimeException("Username não está preenchido");
@@ -61,10 +65,6 @@ public class AcessoService {
         if (StringUtils.isBlank(acessoDTO.getPassword())) {
             LOGGER.info("Password não está preenchido");
             throw new RuntimeException("Password não está preenchido");
-        }
-        if (StringUtils.isBlank(acessoDTO.getUsername()) && StringUtils.isBlank(acessoDTO.getPassword())) {
-            LOGGER.info("Usuario e Password não estão preenchidos");
-            throw new RuntimeException("Usuario e Password não está preenchido");
         }
     }
 }
