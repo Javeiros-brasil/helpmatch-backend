@@ -19,13 +19,16 @@ public class Usuario {
     private String nomePai;
     @NotBlank
     private String nomeMae;
-    @NotBlank
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Long contatosId;
-    @NotBlank
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Long enderecosId;
+    private Long acessoId;
     @NotBlank
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private Long acessoId;
+    private Contato contato
+    @NotBlank
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Endereco endereco
+    @NotBlank
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Acesso acesso
 }
