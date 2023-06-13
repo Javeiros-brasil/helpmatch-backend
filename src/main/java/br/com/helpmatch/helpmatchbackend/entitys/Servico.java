@@ -9,7 +9,9 @@ public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @ManyToOne
+    @JoinColumn(name = "profissional_id")
+    private Profissional profissional;
     private long profissionalId;
     private String nome;
     private String descricao;
@@ -17,6 +19,9 @@ public class Servico {
     private double preco;
     private boolean ativo;
     private double precoPromocao;
+    @NotNull
+    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL)
+    private List<Agendamento> agendamentos;
 
     public void cadastrarServico(Servico servico){
 
