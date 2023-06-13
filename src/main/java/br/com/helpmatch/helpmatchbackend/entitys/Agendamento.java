@@ -25,6 +25,12 @@ public class Agendamento {
     private int servicoId;
     @NotBlank
     private int avaliacao;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
 
 
     public void realizarAgendamento(){
