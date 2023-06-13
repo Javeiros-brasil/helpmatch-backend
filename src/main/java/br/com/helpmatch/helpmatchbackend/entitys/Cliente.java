@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class Cliente extends Usuario {
     @NotNull
-    @OneToMany()
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Agendamento> agendamentos;
 
     public void avaliarAtendimento(){
