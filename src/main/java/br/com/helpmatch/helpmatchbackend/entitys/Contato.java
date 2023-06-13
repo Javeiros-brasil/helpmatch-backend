@@ -17,7 +17,7 @@ public class Contato {
     @NotBlank
     private String email;
     @NotBlank
-    @OneToOne,
+    @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
