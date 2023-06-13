@@ -11,7 +11,7 @@ import java.util.List;
 public class Profissional extends Usuario{
 
     @NotNull
-    @OneToMany
+    @OneToMany(mappedBy = "profissional", cascade = CascadeType.ALL)
     private List<Servico> servicos;
 
     public void iniciarAtendimento(){
