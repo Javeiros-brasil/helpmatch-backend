@@ -25,6 +25,7 @@ public class Endereco {
     private String estado;
     @NotBlank
     @OneToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
 }
