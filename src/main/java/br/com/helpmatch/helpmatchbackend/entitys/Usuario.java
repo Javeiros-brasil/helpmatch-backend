@@ -20,9 +20,12 @@ public class Usuario {
     @NotBlank
     private String nomeMae;
     @NotBlank
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Long contatosId;
     @NotBlank
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Long enderecosId;
     @NotBlank
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Long acessoId;
 }
