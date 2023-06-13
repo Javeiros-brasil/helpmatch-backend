@@ -22,6 +22,7 @@ public class Acesso {
     private boolean aceitouTermos;
     @NotBlank
     @OneToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
 
