@@ -1,0 +1,4 @@
+br\com\helpmatch\helpmatchbackend\entities\Acesso.class
+br\com\helpmatch\helpmatchbackend\HelpMatchApplication.class
+br\com\helpmatch\helpmatchbackend\repository\AcessoRepository.class
+br\com\helpmatch\helpmatchbackend\service\AcessoService.class
