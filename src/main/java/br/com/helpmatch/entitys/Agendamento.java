@@ -10,10 +10,7 @@ import java.util.Date;
 
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +25,13 @@ public class Agendamento {
     private int servicoId;
     @NotBlank
     private int avaliacao;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
+
 
     public void realizarAgendamento(){
 

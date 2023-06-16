@@ -7,10 +7,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Acesso {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +20,10 @@ public class Acesso {
     private boolean ativo;
     @NotBlank
     private boolean aceitouTermos;
+    @NotBlank
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 
 

@@ -7,10 +7,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,5 +16,9 @@ public class Contato {
     private String celular;
     @NotBlank
     private String email;
+    @NotBlank
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 }

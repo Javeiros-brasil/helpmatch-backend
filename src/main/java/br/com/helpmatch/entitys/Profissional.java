@@ -7,39 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Profissional {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @NotBlank
-    private Date dataNascimento;
-    @NotBlank
-    private String nomeCompleto;
-    @NotBlank
-    private String cpf;
-    @NotBlank
-    private String nomePai;
-    @NotBlank
-    private String nomeMae;
-    @NotBlank
-    private Long contatosId;
-    @NotBlank
-    private Long enderecosId;
-    @NotBlank
-    private Long acessoId;
+@Data
+public class Profissional extends Usuario{
+
     @NotNull
-    @OneToMany
+    @OneToMany(mappedBy = "profissional", cascade = CascadeType.ALL)
     private List<Servico> servicos;
-
-
 
     public void iniciarAtendimento(){
 
     }
-
-
 }

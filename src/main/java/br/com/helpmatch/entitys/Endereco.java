@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,5 +23,9 @@ public class Endereco {
     private String cidade;
     @NotBlank
     private String estado;
+    @NotBlank
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 }
