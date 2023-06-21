@@ -1,6 +1,10 @@
 package br.com.helpmatch.helpmatchbackend.repository;
 
-import br.com.helpmatch.helpmatchbackend.entities.Acesso;
+/*
+@Author Rafael e Ruan
+*/
+
+import br.com.helpmatch.helpmatchbackend.entitys.Acesso;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;

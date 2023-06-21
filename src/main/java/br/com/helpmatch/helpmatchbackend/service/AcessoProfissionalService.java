@@ -1,6 +1,10 @@
 package br.com.helpmatch.helpmatchbackend.service;
 
-import br.com.helpmatch.helpmatchbackend.entities.Acesso;
+/*
+@Author Rafael e Ruan
+*/
+
+import br.com.helpmatch.helpmatchbackend.entitys.Acesso;
 import io.micrometer.common.util.StringUtils;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -45,15 +49,15 @@ public class AcessoProfissionalService {
     }
     
     public void validateValues(String username, String password) throws RuntimeException{
-        if(StringUtils.isBlank(username)){
+        if(StringUtils.isBlank(username) && StringUtils.isBlank(password)){
+            LOGGER.info("Usuário e Password Vazios");
+            throw new RuntimeException("Usuário e Password Vazios");
+        }else if(StringUtils.isBlank(username)){
             LOGGER.info("Username Vazio");
             throw new RuntimeException("Username Vazio");
         }else if(StringUtils.isBlank(password)){
             LOGGER.info("Password Vazio");
             throw new RuntimeException("Password Vazio");
-        }else if(StringUtils.isBlank(username) && StringUtils.isBlank(password)){
-            LOGGER.info("Usuário e Password Vazios");
-            throw new RuntimeException("Usuário e Password Vazios");
         }
     }
 }

@@ -1,4 +1,4 @@
-package br.com.helpmatch.helpmatchbackend.entities;
+package br.com.helpmatch.helpmatchbackend.entitys;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

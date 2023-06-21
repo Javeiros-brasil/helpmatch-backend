@@ -1,15 +1,12 @@
 package br.com.helpmatch.helpmatchbackend.dto;
 
+/*
+@Author Rafael e Ruan
+*/
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-/**
- *
- * @author Rafael e Ruan
- */
 
 @Data
 @AllArgsConstructor
