@@ -1,9 +1,12 @@
-package br.com.helpmatch.helpmatchbackend.entitys;
+package br.com.helpmatch.helpmatchbackend.entities;
 
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 @Entity
@@ -11,14 +14,11 @@ import lombok.*;
 public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @NotBlank
+    private Long id;
     private String celular;
-    @NotBlank
     private String email;
-    @NotBlank
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
+
+    @OneToOne(mappedBy = "contato", cascade = CascadeType.ALL)
     private Usuario usuario;
 
 }

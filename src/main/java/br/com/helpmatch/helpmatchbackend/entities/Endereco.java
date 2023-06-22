@@ -1,4 +1,4 @@
-package br.com.helpmatch.helpmatchbackend.entitys;
+package br.com.helpmatch.helpmatchbackend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,24 +8,16 @@ import lombok.*;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @NotBlank
+    private Long id;
     private String cep;
-    @NotBlank
     private String logradouro;
-    @NotBlank
     private String complemento;
-    @NotBlank
     private String numero;
-    @NotBlank
     private String bairro;
-    @NotBlank
     private String cidade;
-    @NotBlank
     private String estado;
-    @NotBlank
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
+
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL )
     private Usuario usuario;
 
 }
