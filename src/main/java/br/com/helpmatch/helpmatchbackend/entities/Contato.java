@@ -12,22 +12,18 @@ import lombok.*;
 
 @Entity
 @Data
-public class Acesso {
-
+public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
     
-    @Column(nullable = false, unique=true)
-    private String username;
+    @Column(nullable = false)
+    private String celular;
     
     @Column(nullable = false)
-    private String password;
-    private boolean ativo;
-    private boolean aceitouTermos;
+    private String email;
 
-    @OneToOne(mappedBy = "acesso",cascade = CascadeType.ALL)
-    private Usuario usuario;    
-    
+    @OneToOne(mappedBy = "contato", cascade = CascadeType.ALL)
+    private Usuario usuario;
+
 }
