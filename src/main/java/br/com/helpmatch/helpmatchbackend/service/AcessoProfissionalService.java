@@ -4,7 +4,7 @@ package br.com.helpmatch.helpmatchbackend.service;
 @Author Rafael e Ruan
 */
 
-import br.com.helpmatch.helpmatchbackend.entitys.Acesso;
+import br.com.helpmatch.helpmatchbackend.entities.Acesso;
 import io.micrometer.common.util.StringUtils;
 import java.util.Optional;
 import org.slf4j.Logger;

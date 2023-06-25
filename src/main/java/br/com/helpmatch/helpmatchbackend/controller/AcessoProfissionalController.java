@@ -5,7 +5,7 @@ package br.com.helpmatch.helpmatchbackend.controller;
 */
 
 import br.com.helpmatch.helpmatchbackend.dto.AcessoProfissionalDTO;
-import br.com.helpmatch.helpmatchbackend.entitys.Acesso;
+import br.com.helpmatch.helpmatchbackend.entities.Acesso;
 import br.com.helpmatch.helpmatchbackend.service.AcessoProfissionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
