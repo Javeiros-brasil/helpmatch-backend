@@ -3,7 +3,7 @@ package br.com.helpmatch.helpmatchbackend.converter;
 import br.com.helpmatch.helpmatchbackend.controller.request.ProfissionalRequest;
 import br.com.helpmatch.helpmatchbackend.controller.response.ProfissionalResponse;
 import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
-import br.com.helpmatch.helpmatchbackend.entity.ProfissionalEntity;
+import br.com.helpmatch.helpmatchbackend.entities.Profissional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,14 +20,14 @@ public class ProfissionalConverter {
     public ProfissionalDto converterRequestToDto(ProfissionalRequest request){
         return mapper.map( request, ProfissionalDto.class );
     }
-    public ProfissionalDto converterEntityToDto(ProfissionalEntity entity){
+    public ProfissionalDto converterEntityToDto(Profissional entity){
         return mapper.map( entity, ProfissionalDto.class );
     }
     public ProfissionalResponse converterDtoToResponse(ProfissionalDto request){
         return mapper.map( request, ProfissionalResponse.class );
     }
-    public ProfissionalEntity converterDtoToEntity(ProfissionalDto request){
-        return mapper.map( request, ProfissionalEntity.class );
+    public Profissional converterDtoToEntity(ProfissionalDto request){
+        return mapper.map( request, Profissional.class );
     }
 
     public List<ProfissionalResponse> converterListDtoToListResponse(List<ProfissionalDto> listDto){
@@ -35,7 +35,7 @@ public class ProfissionalConverter {
         return listDto.stream().map(clienteEntity -> mapper.map(clienteEntity, ProfissionalResponse.class)).collect(Collectors.toList());
     }
 
-    public List<ProfissionalDto> converterListEntityToListDto(Collection<ProfissionalEntity> listEntity){
+    public List<ProfissionalDto> converterListEntityToListDto(Collection<Profissional> listEntity){
 
         return listEntity.stream().map(clienteEntity -> mapper.map(clienteEntity, ProfissionalDto.class)).collect(Collectors.toList());
 

@@ -24,7 +24,7 @@ public interface ProfissionalService {
      * @param profissional - Profissional que sera criado
      * @return ProfissionalDto - Profissional criado
      */
-    public ProfissionalDto create(ProfissionalDto profissional);
+    public Optional<ProfissionalDto> create(ProfissionalDto profissional);
 
     /**
      * Metodo para criar um profissional

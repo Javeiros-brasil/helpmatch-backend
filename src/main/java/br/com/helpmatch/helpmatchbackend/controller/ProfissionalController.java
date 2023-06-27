@@ -7,6 +7,7 @@ import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
 import br.com.helpmatch.helpmatchbackend.service.ProfissionalService;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,15 @@ public class ProfissionalController {
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody ProfissionalRequest profissional){
 
-    	ProfissionalDto profissionalResponse = service.create( converter.converterRequestToDto(profissional) );
-        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(profissionalResponse.getId())
-                .toUri()).body(profissionalResponse);
+    	return service.create( converter.converterRequestToDto(profissional) ).map(profissionalDto -> {
+
+            return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(profissionalDto.getId())
+                    .toUri()).body(converter.converterDtoToResponse(profissionalDto));
+
+        }).orElse(ResponseEntity.badRequest().build());
+
     }
 
     @PutMapping(path = "/{id}")
@@ -57,7 +62,6 @@ public class ProfissionalController {
     @ResponseStatus(code = HttpStatus.OK)
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
-
         service.delete(id);
     }
 

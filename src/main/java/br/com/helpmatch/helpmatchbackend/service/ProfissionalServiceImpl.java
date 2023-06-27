@@ -2,7 +2,7 @@ package br.com.helpmatch.helpmatchbackend.service;
 
 import br.com.helpmatch.helpmatchbackend.converter.ProfissionalConverter;
 import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
-import br.com.helpmatch.helpmatchbackend.entity.ProfissionalEntity;
+import br.com.helpmatch.helpmatchbackend.entities.Profissional;
 import br.com.helpmatch.helpmatchbackend.repository.ProfissionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,11 +28,11 @@ public class ProfissionalServiceImpl implements ProfissionalService{
 
     @Override
     public List<ProfissionalDto> getAll() {
-    	return converter.converterListEntityToListDto( (Collection<ProfissionalEntity>) repository.findAll());
+    	return converter.converterListEntityToListDto( (Collection<Profissional>) repository.findAll());
     }
 
     @Override
-    public ProfissionalDto create(ProfissionalDto profissional) {
+    public Optional<ProfissionalDto> create(ProfissionalDto profissional) {
 
         // fazer 1- não deve permitir que um profissional se cadastre com o mesmo CPF, Email e Telefone Celular
     	profissional.getAcesso().setAtivo(false);
@@ -41,9 +41,9 @@ public class ProfissionalServiceImpl implements ProfissionalService{
         }
         //fazer 4- A aplicação deve enviar um e-mail para o e-mail do cliente;
 
-    	ProfissionalEntity entity =  repository.save(converter.converterDtoToEntity(profissional));
+    	Profissional entity =  repository.save(converter.converterDtoToEntity(profissional));
 
-        return converter.converterEntityToDto(entity);
+        return Optional.of(converter.converterEntityToDto(entity));
     }
 
     @Override
