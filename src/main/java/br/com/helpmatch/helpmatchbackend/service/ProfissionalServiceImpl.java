@@ -4,6 +4,7 @@ import br.com.helpmatch.helpmatchbackend.converter.ProfissionalConverter;
 import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
 import br.com.helpmatch.helpmatchbackend.entities.Profissional;
 import br.com.helpmatch.helpmatchbackend.repository.ProfissionalRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,9 +65,10 @@ public class ProfissionalServiceImpl implements ProfissionalService{
         }).orElse(Optional.empty());
 
     }
-
+    @Transactional
     @Override
     public void delete(Long id) {
+        System.out.println(id);
         repository.deleteById(id);
     }
 }

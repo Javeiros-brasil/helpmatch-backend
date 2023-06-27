@@ -9,6 +9,7 @@ import br.com.helpmatch.helpmatchbackend.service.ProfissionalService;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,7 @@ public class ProfissionalController {
 
     @ResponseStatus(code = HttpStatus.OK)
     @DeleteMapping(path = "/{id}")
+    @Transactional
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

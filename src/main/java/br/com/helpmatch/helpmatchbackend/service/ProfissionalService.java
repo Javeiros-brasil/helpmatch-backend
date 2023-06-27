@@ -1,6 +1,7 @@
 package br.com.helpmatch.helpmatchbackend.service;
 
 import br.com.helpmatch.helpmatchbackend.dto.ProfissionalDto;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +39,6 @@ public interface ProfissionalService {
      * Metodo para remover um profissional
      * @param id - Identificador do profissional que sera removido
      */
+    @Transactional
     public void delete(Long id);
 }
