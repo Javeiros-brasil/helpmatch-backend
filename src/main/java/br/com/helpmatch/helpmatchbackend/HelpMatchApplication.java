@@ -9,5 +9,4 @@ public class HelpMatchApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelpMatchApplication.class, args);
 	}
-
 }
