@@ -9,6 +9,9 @@ import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@With
 public class Profissional extends Usuario{
 
 	@Column(nullable = false)
