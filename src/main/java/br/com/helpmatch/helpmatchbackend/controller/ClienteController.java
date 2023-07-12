@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClienteController {
 
-    ClienteDto clienteDto;
     @PostMapping("/cliente")
-    public ResponseEntity<ClienteDto> saveCliente(@RequestBody  ClienteDto  ClienteDto){
-        ClienteDto clienteDto =new ClienteDto();
-        BeanUtils.copyProperties(clienteDto, clienteDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
-
+    public ResponseEntity<?> saveCliente(@RequestBody  ClienteDto  clienteDto){
+    	return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
     }
 }
 
