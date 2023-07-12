@@ -6,7 +6,8 @@ import lombok.Data;
 @Data
 public class CodeDto {
     @Min(value = 6, message = "Código inválido.")
-    private int codeVerification;
+    private String code;
+    
     @Email(message = "Deve ser um email válido.")
     private String email;
 }

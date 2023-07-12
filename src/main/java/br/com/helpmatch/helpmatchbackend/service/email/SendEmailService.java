@@ -8,10 +8,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SendEmailService implements ISendEmailService {
-    @Value("${email.sender}")
+
+	@Value("${email.sender}")
     private String EMAIL_SENDER;
+
     @Value("${email.password}")
     private String EMAIL_SENDER_PASSWORD;
+
     @Override
     public boolean sendEmail(String recipient, String body, String subject) {
         try {

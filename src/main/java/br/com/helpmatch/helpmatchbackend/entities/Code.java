@@ -1,4 +1,4 @@
-package br.com.helpmatch.helpmatchbackend.entity;
+package br.com.helpmatch.helpmatchbackend.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,20 +9,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @Entity
 @NoArgsConstructor
 public class Code {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int codeVerification;
-    private Date expiration;
+    private String code;
     private String email;
-    public Code(int codeVerification, Date expiration) {
-        this.codeVerification = codeVerification;
+    private LocalDate expiration;
+
+    public Code(String code, LocalDate expiration) {
+        this.code = code;
         this.expiration = expiration;
     }
 }

@@ -13,6 +13,6 @@ import org.springframework.data.repository.query.Param;
 
 @Repository
 public interface AcessoProfissionalRepository extends JpaRepository<Acesso, Long> {
-    @Query("SELECT a FROM #{Acesso} a WHERE a.username=:username")
+    @Query("SELECT a FROM #{#entityName} a WHERE a.username=:username")
     Optional<Acesso> findByUsername(@Param("username") String username);
 }
