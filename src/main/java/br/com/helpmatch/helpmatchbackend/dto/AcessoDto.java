@@ -1,16 +1,21 @@
 package br.com.helpmatch.helpmatchbackend.dto;
 
+/*
+@Author Rafael e Ruan
+*/
+
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AcessoDto {
-
-    private Long id;
+@NoArgsConstructor
+public class AcessoDto{
+    private long id;
     private String username;
     private String password;
-    private Boolean ativo;
-    private Boolean aceitouTermos;
-
+    private boolean ativo;
+    private boolean aceitouTermos;
+   
 }

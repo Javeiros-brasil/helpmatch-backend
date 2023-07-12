@@ -11,13 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.helpmatch.helpmatchbackend.repository.AcessoProfissionalRepository;
+import br.com.helpmatch.helpmatchbackend.repository.AcessoRepository;
 
 @Service
 public class AcessoProfissionalService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AcessoProfissionalService.class);
     @Autowired
-    private AcessoProfissionalRepository acessoRepository;
+    private AcessoRepository acessoRepository;
     
     public Acesso getAcessValidation(String username, String password) throws RuntimeException{
         validateValues(username, password);

@@ -1,6 +1,6 @@
 package br.com.helpmatch.helpmatchbackend.service;
 
-import br.com.helpmatch.helpmatchbackend.dto.AcessoDTO;
+import br.com.helpmatch.helpmatchbackend.dto.AcessoDto;
 import br.com.helpmatch.helpmatchbackend.entities.Acesso;
 import br.com.helpmatch.helpmatchbackend.repository.AcessoRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AcessoService {
+public class AcessoClienteService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AcessoService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AcessoClienteService.class);
     @Autowired
     private AcessoRepository acessoRepository;
 
     /*como aqui está sendo testado apenas superficial para validar o acesso do cliente
     esta sendo buscado na base pelo nome do usuário apenas.*/
-    public Acesso getAcessValidation(AcessoDTO acessoDTO) throws RuntimeException {
+    public Acesso getAcessValidation(AcessoDto acessoDTO) throws RuntimeException {
         validateValues(acessoDTO);
         Optional<Acesso> optionalAcessoUsername = acessoRepository.findByUsername(acessoDTO.getUsername());
         if (optionalAcessoUsername.isPresent()) {
@@ -53,7 +53,7 @@ public class AcessoService {
         }
     }
 
-    private void validateValues(AcessoDTO acessoDTO) throws RuntimeException {
+    private void validateValues(AcessoDto acessoDTO) throws RuntimeException {
         if (StringUtils.isBlank(acessoDTO.getUsername()) && StringUtils.isBlank(acessoDTO.getPassword())) {
             LOGGER.info("Usuario e Password não estão preenchidos");
             throw new RuntimeException("Usuario e Password não está preenchido");
