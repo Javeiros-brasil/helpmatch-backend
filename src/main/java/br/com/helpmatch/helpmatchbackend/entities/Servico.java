@@ -23,15 +23,18 @@ public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(nullable = false)
     private String nome;
-    
+
     @Column(nullable = false)
     private String descricao;
-    
+
+    @Column(nullable = false)
+    private String localAtendimento;
+
     private Long tempoDuracao;
-    
+
     private BigDecimal preco;
     private BigDecimal precoPromocao;
 
@@ -43,8 +46,10 @@ public class Servico {
 
     @Formula("profissional_id")
     private Long profissionalId;
-    
+
     @OneToMany(mappedBy = "servico")
     private List<Agendamento> agendamentos;
+
+
 
 }
